@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'main.g.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -23,11 +24,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final greetProvider = Provider((ref) {
-  return 'Hello, Flutter';
-});
+@riverpod
+String greet(GreetRef ref) {
+  return 'Hello World!';
+}
 
-class CounterNotifier extends Notifier<int> {
+@riverpod
+class CounterNotifier extends _$CounterNotifier {
   @override
   int build() => 0;
 
@@ -35,10 +38,6 @@ class CounterNotifier extends Notifier<int> {
     state = state + 1;
   }
 }
-
-final counterNotifierProvider = NotifierProvider<CounterNotifier, int>(() {
-  return CounterNotifier();
-});
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
