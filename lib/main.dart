@@ -75,3 +75,34 @@ class HomePage extends ConsumerWidget {
   }
   
 }
+
+@riverpod
+Future<String> asyncGreet(AsyncGreetRef ref) async {
+  await Future.delayed(const Duration(seconds: 1));
+  return 'Hello world';
+}
+
+@riverpod
+class GreetNotifier extends _$GreetNotifier {
+  @override
+  Future<String> build() async {
+    await Future.delayed(const Duration(seconds: 1));
+    return 'Hello';
+  }
+}
+
+class GreetingPage extends ConsumerWidget {
+  const GreetingPage({Key? key}): super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AsyncValue<String> greet = ref.watch(asyncGreetProvider);
+    return Center(
+      child: greet.when(
+        loading: () => const Text("Loading"),
+        data: (greet) => Text(greet),
+        error: (e, st) => Text(e.toString())),
+    );
+  }
+}
+
