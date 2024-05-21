@@ -34,12 +34,12 @@ final asyncGreetProvider = AutoDisposeFutureProvider<String>.internal(
 );
 
 typedef AsyncGreetRef = AutoDisposeFutureProviderRef<String>;
-String _$counterNotifierHash() => r'b41c3b270eeaef772b79d7364bbc747f34ed9934';
+String _$counterNotifierHash() => r'afde4a95c71728ed6b2f58b986d3b8a37532c226';
 
 /// See also [CounterNotifier].
 @ProviderFor(CounterNotifier)
 final counterNotifierProvider =
-    AutoDisposeNotifierProvider<CounterNotifier, int>.internal(
+    AutoDisposeAsyncNotifierProvider<CounterNotifier, int>.internal(
   CounterNotifier.new,
   name: r'counterNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -49,7 +49,7 @@ final counterNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$CounterNotifier = AutoDisposeNotifier<int>;
+typedef _$CounterNotifier = AutoDisposeAsyncNotifier<int>;
 String _$greetNotifierHash() => r'6eacb8e4101ff6e3787a57ee3502d1993d2c5458';
 
 /// See also [GreetNotifier].
